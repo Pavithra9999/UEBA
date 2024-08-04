@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #00b09b, #96c93d);
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+        .upload-form {
+            margin: 20px 0;
+        }
+        input[type="file"] {
+            padding: 10px;
+            background: #ffffff;
+            color: #333;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background: #ffffff;
+            color: #333;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Anomaly Detection Results</h1>
+        <form action="{{ url_for('results') }}" method="post" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit">Upload and Analyze</button>
+        </form>
+        {% if anomalies is not none and threats is not none %}
+            <p>Total Anomalies Detected: {{ anomalies }}</p>
+            <p>Total Threats Detected: {{ threats }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
